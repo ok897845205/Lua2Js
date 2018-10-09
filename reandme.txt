@@ -1,0 +1,26 @@
+
+桂林字牌 head_file.lua 和 item_conf.lua 为例
+
+1、lua 文件夹放置 head_file.lua 和 item_conf.lua 需要转换为js的文件.
+
+2、js 文件夹存放转换生成的相应的 js文件.
+
+// 特别注意
+3、head_file.lua 652 ~ 653行 需要手动将 
+    --商品类型ID
+    headFile.goodsTypeID = require "header.item_conf"
+    headFile.itemTypeID = headFile.goodsTypeID
+
+    改为:
+
+    --商品类型ID
+    headFile.goodsTypeID = require "item_conf"
+    headFile.itemTypeID = headFile.goodsTypeID
+
+    其生成的js为：
+
+    //商品类型ID
+    headFile.goodsTypeID = require('./item_conf')
+    headFile.itemTypeID = headFile.goodsTypeID
+
+4、使用时将以js文件为主, 先查明后使用.
